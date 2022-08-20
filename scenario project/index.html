@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Scenario-Project</title>
+  </head>
+  <style>
+    .text-color {
+      color: black;
+    }
+    /* .bg-btn .active {
+      background-color: #ddd !important;
+      color: #1999ce !important;
+    } */
+    .bg-btn .active h5 {
+      color: #1999ce !important;
+    }
+    /* .bg-btn .active h5 {       background-color: #ddd !important;
+    } */
+  </style>
+  <body>
+    <div class="vertical-tab border container-fluid p-5">
+      <div class="row">
+        <div
+          class="col-lg-3 p-5 text-start"
+          style="background-color: rgb(240, 239, 239)"
+        >
+          <button class="bg-btn btn active text-start" data-target-tab="#home">
+            <h5>Home</h5>
+          </button>
+          <button class="btn bg-btn text-start" data-target-tab="#addscenario">
+            <h5>Add Scenario</h5>
+          </button>
+          <button class="btn bg-btn text-start" data-target-tab="#allscenario">
+            <h5>All Scenario</h5>
+          </button>
+          <button class="btn bg-btn text-start" data-target-tab="#addvehicle">
+            <h5>Add Vehicle</h5>
+          </button>
+        </div>
+        <div class="col-lg-9 bg-dark">
+          <!-- home start -->
+          <div class="item active" id="home">
+            <div class="row mb-3">
+              <div class="col-12">
+                <label for="homeScenario" class="form-label small text-white">
+                  Scenario</label
+                >
+              </div>
+              <div class="col-3">
+                <select
+                  class="form-select form-select-md mb-3 text-white col-6 single_select scenario_select"
+                  id="homeScenario"
+                  aria-label=".form-select-lg example"
+                  style="background-color: rgb(66, 65, 65)"
+                >
+                  <!-- <option value="-1"></option>
+                  <option value="">Test Scenario</option>
+                  <option value="">My Scenario</option> -->
+                </select>
+              </div>
+            </div>
+            <!-- Home table start -->
+            <div
+              class="container"
+              name="sample"
+              style="background-color: rgb(66, 65, 65)"
+            >
+              <table
+                id="Htbl"
+                class="table"
+                style="background-color: rgb(66, 65, 65)"
+              >
+                <thead class="text-white">
+                  <tr>
+                    <th>Vehicle Id</th>
+                    <th>Vehicle Name</th>
+                    <th>Position X</th>
+                    <th>Position Y</th>
+                    <th>Speed</th>
+                    <th>Direction</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+
+                <tbody class="vehicleList"></tbody>
+              </table>
+            </div>
+            <!-- Home table end -->
+            <div class="container">
+              <div class="row">
+                <div class="col-7"></div>
+                <div class="col-lg-5 d-flex">
+                  <button
+                    type="button"
+                    class="btn btn-lg mx-2 btn-success"
+                    id="reset"
+                  >
+                    Start Simulation
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-lg mx-2 btn-primary"
+                    id="reset"
+                  >
+                    Start Simulation
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- home end -->
+          <!-- add scenario start -->
+          <div class="item" id="addscenario">
+            <div class="container p-4 bg-dark">
+              <div class="row gx-5">
+                <div class="col-12">
+                  <div class="">
+                    <!-- breadcrum start -->
+                    <nav aria-label="breadcrumb text-white">
+                      <ol class="breadcrumb text-white">
+                        <li class="breadcrumb-item text-white">
+                          <a href="#" class="text-decoration-none text-white"
+                            >Scenario</a
+                          >
+                        </li>
+                        <li
+                          class="breadcrumb-item active text-white"
+                          aria-current="page"
+                        >
+                          add
+                        </li>
+                      </ol>
+                    </nav>
+                    <!-- breadcrum end -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <h5 class="text-white">Add Scenario</h5>
+              </div>
+
+              <div
+                class="container py-5"
+                style="background-color: rgb(66, 65, 65)"
+              >
+                <form name="sample" id="add_form">
+                  <div class="row gx-5">
+                    <div class="col-lg-6">
+                      <div class="">
+                        <label
+                          for="scenarioName"
+                          class="form-label small text-white"
+                          >Scenario Name</label
+                        >
+                        <input
+                          type="text"
+                          pattern="/^[a-zA-Z]$/g"
+                          class="form-control bg-dark text-white"
+                          name="scenarioName"
+                          id="scenarioName"
+                          placeholder="Text Scenario"
+                        />
+                        <div class="scenarioNameError text-danger"></div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="text-white">
+                        <label
+                          for="scenarioTime"
+                          class="form-label small text-white"
+                          >Scenario Time (seconds)</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control bg-dark text-white"
+                          name="scenarioTime"
+                          id="scenarioTime"
+                          placeholder="10"
+                        />
+                        <div class="scenarioTimeError text-danger"></div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- btns -->
+              <div class="container py-4 px-1">
+                <div class="row">
+                  <div class="col-lg-2">
+                    <button
+                      type="button"
+                      class="btn btn-lg mx-2 btn-success"
+                      name="add"
+                      value="Add Data"
+                      onclick="addScenario()"
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <div class="col-lg-2">
+                    <button
+                      type="button"
+                      class="btn btn-lg mx-2 btn-warning"
+                      id="resetValues"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                  <div class="col-lg-3">
+                    <button
+                      type="button"
+                      class="btn btn-lg mx-2 btn-primary"
+                      data-target-tab="#home"
+                    >
+                      Go Back
+                    </button>
+                  </div>
+                </div>
+
+                <!-- btns -->
+              </div>
+            </div>
+          </div>
+          <!-- add scenario end-->
+          <!-- all scenario start -->
+          <div class="item" id="allscenario">
+            <div class="container py-4 d-flex">
+              <div class="col-lg-6">
+                <h5 class="text-white">All Scenario</h5>
+              </div>
+              <div class="col-lg-6">
+                <!-- btns -->
+                <div class="container px-1">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <button
+                        type="button"
+                        class="btn btn-lg mx-2 btn-primary"
+                        data-target-tab="#addscenario"
+                      >
+                        New Scenario
+                      </button>
+                      <!-- <button
+                        class="btn bg-btn text-start"
+                        data-target-tab="#addscenario"
+                      >
+                        <h5>Add Scenario</h5>
+                      </button>  onclick="delebtn()"  onclick="deleteAllTableRows('myTable')"-->
+                    </div>
+                    <div class="col-lg-4">
+                      <button
+                        type="button"
+                        class="btn btn-lg mx-2 btn-success"
+                        data-target-tab="#addvehicle"
+                      >
+                        Add Vehicle
+                      </button>
+                    </div>
+                    <div class="col-lg-4">
+                      <button
+                        type="button"
+                        class="btn btn-lg mx-2 btn-warning"
+                        id="deleteAll"
+                        onclick="deleteAll('table')"
+                      >
+                        Delete All
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- btns -->
+            <!-- table start -->
+            <div
+              class="container"
+              name="sample"
+              style="background-color: rgb(66, 65, 65)"
+            >
+              <table
+                id="tbl"
+                class="table"
+                style="background-color: rgb(66, 65, 65)"
+              >
+                <thead class="text-white">
+                  <tr>
+                    <th>Scenario Id</th>
+                    <th>Scenario Name</th>
+                    <th>Scenario Time</th>
+                    <th>Number of Vehicle</th>
+                    <th>Add Vehicle</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+
+                <tbody class="scenarioList" id="table"></tbody>
+              </table>
+            </div>
+            <!-- table end -->
+          </div>
+          <!-- all scenario end -->
+          <!-- add vehicle start -->
+          <div class="item" id="addvehicle">
+            <div class="container p-4 bg-dark">
+              <div class="row gx-5">
+                <div class="col-12">
+                  <div class="">
+                    <!-- breadcrum start -->
+                    <nav aria-label="breadcrumb text-white">
+                      <ol class="breadcrumb text-white">
+                        <li class="breadcrumb-item text-white">
+                          <a href="#" class="text-decoration-none text-white"
+                            >Vehicle</a
+                          >
+                        </li>
+                        <li
+                          class="breadcrumb-item active text-white"
+                          aria-current="page"
+                        >
+                          add
+                        </li>
+                      </ol>
+                    </nav>
+                    <!-- breadcrum end -->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <h5 class="text-white">Add Vehicle</h5>
+              </div>
+
+              <div
+                class="container py-5"
+                style="background-color: rgb(66, 65, 65)"
+              >
+                <form name="sample">
+                  <div class="row gx-5">
+                    <div class="col-4">
+                      <div class="">
+                        <label for="" class="form-label small text-white"
+                          >Scenario List</label
+                        >
+                        <select
+                          class="form-select bg-dark form-select-md mb-3 text-white col-6 single_select scenario_select_add_vehicle"
+                          id="ScenarioListdrop"
+                          aria-label=".form-select-lg example"
+                          id="scenarioType"
+                        >
+                          <!-- <option value="-1"></option>
+                          <option value="">Test Scenario</option>
+                          <option value="">My Scenario</option> -->
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="text-white">
+                        <label
+                          for="scenarioTime"
+                          class="form-label small text-white"
+                          >Vehicle Name</label
+                        >
+                        <input
+                          type="text"
+                          id="vehicleName"
+                          class="form-control bg-dark text-white"
+                          placeholder="10"
+                        />
+                        <div class="nameFError text-danger"></div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="text-white">
+                        <label
+                          for="scenarioTime"
+                          class="form-label small text-white"
+                          >Speed</label
+                        >
+                        <input
+                          type="text"
+                          id="speed"
+                          class="form-control bg-dark text-white"
+                          placeholder="10"
+                        />
+                        <div class="nameFError text-danger"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--  -->
+                  <div class="row gx-5 mt-4">
+                    <div class="col-4">
+                      <div class="">
+                        <label for="" class="form-label small text-white"
+                          >Position X</label
+                        >
+                        <input
+                          type="text"
+                          id="positionX"
+                          class="form-control bg-dark text-white"
+                          placeholder="10"
+                        />
+                        <div class="nameFError text-danger"></div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="text-white">
+                        <label
+                          for="scenarioTime"
+                          class="form-label small text-white"
+                          >Position Y</label
+                        >
+                        <input
+                          type="text"
+                          id="positionY"
+                          class="form-control bg-dark text-white"
+                          placeholder="10"
+                        />
+                        <div class="nameFError text-danger"></div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="text-white">
+                        <label
+                          for=""
+                          id="direction"
+                          class="form-label small text-white"
+                          >Direction</label
+                        >
+
+                        <select
+                          class="form-select bg-dark form-select-md mb-3 text-white col-6 single_select"
+                          aria-label=".form-select-lg example"
+                          id="directionDpn"
+                        >
+                          <option value="-1"></option>
+                          <option value="towards">Towards</option>
+                          <option value="backwards">Backwards</option>
+                          <option value="upwards">Upwards</option>
+                          <option value="downwards">Downwards</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  -->
+                </form>
+                <!-- btns -->
+                <div class="container py-4 px-1">
+                  <div class="row">
+                    <div class="col-lg-2">
+                      <button
+                        type="button"
+                        class="btn btn-lg mx-2 btn-success"
+                        name="add"
+                        value="Add Data"
+                        onclick="addVehicle()"
+                      >
+                        Add
+                      </button>
+                    </div>
+                    <div class="col-lg-2">
+                      <button
+                        type="button"
+                        class="btn btn-lg mx-2 btn-warning"
+                        id="vehicleReset"
+                      >
+                        Reset
+                      </button>
+                    </div>
+                    <div class="col-lg-3">
+                      <button
+                        type="button"
+                        class="btn btn-lg mx-2 btn-primary"
+                        data-target-tab="#home"
+                      >
+                        Go Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- btns -->
+              </div>
+            </div>
+          </div>
+          <!-- add vehicle end -->
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
