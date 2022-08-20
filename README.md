@@ -1,10 +1,10 @@
 # ApexPlus-Technologies-scenario-Assignment
 
-Installation of Project:
+*Installation of Project:
 1) clone the repo by using git clone command
 2) open the index.html file there you can see the project
 
-Explanation of Project:
+*Explanation of Project:
 
 -This application is built by using HTML, CSS, Javascript.
 
