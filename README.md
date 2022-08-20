@@ -12,7 +12,7 @@
 
 -In Add Scenario user can add scenario name and Time and also it as a Reset button and Go back button which is used to go to Home.
 
--In All Scenario all the given inputs will display and there will be a edit option, Add Vehicle and delete by row and delete all.
+-In All Scenario all the given inputs will display and there will be a edit option, Add Vehicle and delete by row and delete all. If you click on Delete All if will a confirmation popup and if you click ok it will delete all the given values.
 
 -In Add vehicle all the scenario Ids will display in Scenario List Dropdown and there are input fields Vehicle name, Speed, Position X, position Y and Direction(Towards, Backwards, Upwards and Downwards).
 
@@ -23,3 +23,5 @@
 -This application as Scenario id, Scenario name, Scenario Time, Vehicle name, Position and Directions.
 
 -Four Direction are given Towards, Backwards, Upwards and Downwards.
+
+-Used localStorage.
