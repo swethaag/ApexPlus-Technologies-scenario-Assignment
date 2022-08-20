@@ -5,6 +5,7 @@ Installation of Project:
 2) open the index.html file there you can see the project
 
 Explanation of Project:
+
 -This application is built by using HTML, CSS, Javascript.
 -It as a side bar of four buttons 1)Home 2)Add Scenario 3)All Scenario 4)Add Vehicle.
 -In Add Scenario user can add scenario name and Time and also it as a Reset button and Go back button which is used to go to Home.
