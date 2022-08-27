@@ -1,4 +1,4 @@
-# ApexPlus-Technologies-scenario-Assignment
+# Scenario-Project
 
 *Installation of Project:
 1) clone the repo by using git clone command
