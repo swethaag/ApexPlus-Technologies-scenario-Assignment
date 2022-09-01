@@ -1,8 +1,6 @@
 # Scenario-Project
 
-*Installation of Project:
-1) clone the repo by using git clone command
-2) open the index.html file there you can see the project
+
 
 *Explanation of Project:
 
